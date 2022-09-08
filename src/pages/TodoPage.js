@@ -4,8 +4,8 @@ import style from "../pages/style.css"
 import {BsTrash, BsBookmarkCheck, BsFillBookmarkCheckFill} from "react-icons/bs"
 
 function TodoPage(){
-    const [title, setTitle] = useState("")
-    const [time, setTime] = useState("")
+    const [title, setTitle] = useState([])
+    const [time, setTime] = useState([])
     const [todo, setTodo] =  useState([])
 
     
@@ -59,7 +59,7 @@ function TodoPage(){
         </form>
         <div className="tasksContainer">
                 <h3>Sua Lista de tarefas:</h3>
-                {todo.map((todos) => (
+                {Array.from(todo).map((todos) => (
                     <div className="todosRender" key={todos.id}>
                         <p className={todos.done ? "todoDone" : ""}>Tarefa: {todos.title}</p>
                         <p className={todos.done ? "todoDone" : ""}>Você tem: {todos.time} de duração</p>
