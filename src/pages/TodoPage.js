@@ -59,8 +59,8 @@ function TodoPage(){
         </form>
         <div className="tasksContainer">
                 <h3>Sua Lista de tarefas:</h3>
-                {todo.length === 0 && <p>Não existem tarefas</p>}
-                {todo.map((todos) => (
+                {Array.from(todo).length === 0 && <p>Não existem tarefas</p>}
+                {Array.from(todo).map((todos) => (
                     <div className="todosRender" key={todos.id}>
                         <p className={todos.done ? "todoDone" : ""}>Tarefa: {todos.title}</p>
                         <p className={todos.done ? "todoDone" : ""}>Você tem: {todos.time} de duração</p>
