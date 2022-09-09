@@ -4,22 +4,21 @@ import style from "../pages/style.css"
 import {BsTrash, BsBookmarkCheck, BsFillBookmarkCheckFill} from "react-icons/bs"
 
 function TodoPage(){
-    const [title, setTitle] = useState([])
-    const [time, setTime] = useState([])
+    const [title, setTitle] = useState('')
+    const [time, setTime] = useState('')
     const [todo, setTodo] =  useState([])
-
-    
-    useEffect(()=>{
-        const stored = JSON.parse(localStorage.getItem("todos"));
-        setTodo(stored);
-    },[])
+    const [loading, setLoading] = useState(false)
 
     function handleSubmit (e){
         e.preventDefault()
 
-        const todoList = {id: new Date().getTime(), title: title, time: time, done: false}
-        setTodo([...todo].concat(todoList))
-        localStorage.setItem("todos",JSON.stringify([...todo].concat(todoList)));
+        const todoList = {id: new Date().getTime(), title, time, done: false}
+        setTodo([...todo, todoList])
+
+        localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
+        
+        console.log(localStorage)
+        console.log(todoList)
     
         setTime("")
         setTitle("")
@@ -38,6 +37,21 @@ function TodoPage(){
         setTodo((prevState)=> prevState.map((t)=> (t.id === data.id ? (t = data) : t)));
     }
 
+    useEffect(()=>{
+        setLoading(true)
+        //const todoList = {id: '13', title: 'kdoaks', time: 'djisadj'}
+        
+        //localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
+
+        const stored = JSON.parse(localStorage.getItem("todos"));
+        setTodo(stored);
+        setLoading(false)
+    },[])
+
+    
+    if (loading){
+        return(<p>carregando componentes</p>)
+    }
 
     return(
         <section>
@@ -59,7 +73,7 @@ function TodoPage(){
         </form>
         <div className="tasksContainer">
                 <h3>Sua Lista de tarefas:</h3>
-                {Array.from(todo).map((todos) => (
+                {todo.length > 0 ? todo.map((todos) => (
                     <div className="todosRender" key={todos.id}>
                         <p className={todos.done ? "todoDone" : ""}>Tarefa: {todos.title}</p>
                         <p className={todos.done ? "todoDone" : ""}>Você tem: {todos.time} de duração</p>
@@ -70,7 +84,7 @@ function TodoPage(){
                         </div>
                     </div>
                    
-                ))}
+                )): "Loading componentes"}
 
             </div>
     </section>
