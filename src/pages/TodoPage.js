@@ -14,6 +14,8 @@ function TodoPage(){
 
         const todoList = {id: new Date().getTime(), title, time, done: false}
 
+
+        //por algum motivo, a build the produção estava setando o todo como null, então esse if tratou desse problema
         if(todo !== null){
             setTodo([...todo, todoList])
             localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
@@ -77,7 +79,7 @@ function TodoPage(){
                 {todo !== null ? todo.map((todos) => (
                     <div className="todosRender" key={todos.id}>
                         <p className={todos.done ? "todoDone" : ""}>Tarefa: {todos.title}</p>
-                        <p className={todos.done ? "todoDone" : ""}>Você tem: {todos.time} de duração</p>
+                        <p className={todos.done ? "todoDone" : ""}>{todos.time} de duração</p>
 
                         <div className="actions">
                             <span onClick={()=> handleDone(todos)}>{!todos.done ? <BsBookmarkCheck/> : <BsFillBookmarkCheckFill/>}</span>
@@ -85,7 +87,7 @@ function TodoPage(){
                         </div>
                     </div>
                    
-                )): "Loading componentes"}
+                )): "Esperando tarefas..."}
 
             </div>
     </section>
