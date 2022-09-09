@@ -13,10 +13,15 @@ function TodoPage(){
         e.preventDefault()
 
         const todoList = {id: new Date().getTime(), title, time, done: false}
-        setTodo([...todo, todoList])
 
-        localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
-        
+        if(todo !== null){
+            setTodo([...todo, todoList])
+            localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
+        }else{
+            setTodo([todoList])
+            localStorage.setItem("todos",JSON.stringify([todoList]));
+        }
+ 
         console.log(localStorage)
         console.log(todoList)
     
@@ -39,10 +44,6 @@ function TodoPage(){
 
     useEffect(()=>{
         setLoading(true)
-        //const todoList = {id: '13', title: 'kdoaks', time: 'djisadj'}
-        
-        //localStorage.setItem("todos",JSON.stringify([...todo, todoList]));
-
         const stored = JSON.parse(localStorage.getItem("todos"));
         setTodo(stored);
         setLoading(false)
@@ -73,7 +74,7 @@ function TodoPage(){
         </form>
         <div className="tasksContainer">
                 <h3>Sua Lista de tarefas:</h3>
-                {todo.length > 0 ? todo.map((todos) => (
+                {todo !== null ? todo.map((todos) => (
                     <div className="todosRender" key={todos.id}>
                         <p className={todos.done ? "todoDone" : ""}>Tarefa: {todos.title}</p>
                         <p className={todos.done ? "todoDone" : ""}>Você tem: {todos.time} de duração</p>
