@@ -9,12 +9,6 @@
 
 ![example-one](https://user-images.githubusercontent.com/29557719/188645138-300bc5a2-43aa-449e-b6c5-e5a6f2c30b8d.jpeg)/
 
-
-#### A Lista de Tarefas foi feita a partir do conceito Mobile First, então o site se adapta de maneira agradável para os Smartphones. Veja a seguir: 
-
-![example-four](https://user-images.githubusercontent.com/29557719/188647859-af5403bf-2aab-450c-8a9a-34f3da0d9e3a.jpeg)/
-
-
 ## Confira os estágios e efeitos visuais que o projeto apresenta:
 - Quando a tarefa está completa
 
