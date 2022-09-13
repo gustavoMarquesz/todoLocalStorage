@@ -1,4 +1,4 @@
-## A nova versão redesenhada para REACT da minha antiga [ToDo List](https://https://todo-g.netlify.app)
+## A nova versão redesenhada para REACT da minha antiga [ToDo List](https://todo-g.netlify.app)
 - Ps: existe um rep, como este, porém este esta contido a logica usando o Local Storage, não o Json-server
 ### 🔨 Foi usado:
 - Node
